@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Saved Outfits</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Saved Outfits</h1>
+
+{% for outfit in outfits %}
+
+<div class="result-card">
+    <p>{{ outfit }}</p>
+</div>
+
+{% endfor %}
+
+<br>
+
+<a href="/"><button>Back</button></a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>ClosetAI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👕 ClosetAI</h1>
+
+<p>Your wardrobe, intelligently styled.</p>
+
+
+<!-- Personal Profile -->
+
+<div class="wardrobe-box">
+
+<h3>👤 Personal Style Profile</h3>
+
+<input
+id="skinInput"
+placeholder="Skin tone">
+
+<input
+id="bodyInput"
+placeholder="Body structure">
+
+<input
+id="heightInput"
+placeholder="Height">
+
+<input
+id="styleInput"
+placeholder="Style aesthetic">
+
+<input
+id="comfortInput"
+placeholder="Comfort preference">
+
+<input
+id="favoriteInput"
+placeholder="Favorite color">
+
+<input
+id="avoidInput"
+placeholder="Avoid color">
+
+<button
+onclick="saveProfile()">
+
+Save Profile
+
+</button>
+
+</div>
+
+
+
+<!-- Smart Scanner -->
+
+<div class="wardrobe-box">
+
+<h3>📸 Smart Wardrobe Scanner</h3>
+
+<input
+type="file"
+id="imageUpload">
+
+<button
+onclick="uploadClothing()">
+
+Upload
+
+</button>
+
+</div>
+
+
+
+<!-- Wardrobe -->
+
+<div class="wardrobe-box">
+
+<h3>👕 My Wardrobe</h3>
+
+<input
+type="text"
+id="clothInput"
+placeholder="Add clothing item">
+
+<button
+onclick="addClothing()">
+
+Add
+
+</button>
+
+
+<div id="wardrobe-gallery">
+
+</div>
+
+</div>
+
+
+
+<!-- Chat -->
+
+<div id="chat-container">
+
+<div id="chat-box">
+
+<div class="bot-message">
+
+Hey 👋 I'm ClosetAI
+
+Tell me your mood,
+weather,
+occasion,
+or ask for an outfit.
+
+</div>
+
+</div>
+
+<div class="input-area">
+
+<input
+type="text"
+id="userInput"
+placeholder="Type here...">
+
+<button
+onclick="sendMessage()">
+
+Send
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+function sendMessage(){
+
+let input=
+document.getElementById(
+"userInput"
+)
+
+let message=
+input.value
+
+if(message.trim()==""){
+
+return
+
+}
+
+let chatBox=
+document.getElementById(
+"chat-box"
+)
+
+
+chatBox.innerHTML+=
+
+`<div class="user-message">
+
+${message}
+
+</div>`
+
+
+fetch("/chat",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/x-www-form-urlencoded"
+
+},
+
+body:
+"message="+
+encodeURIComponent(
+message
+)
+
+})
+
+.then(response=>response.json())
+
+.then(data=>{
+
+let reply=data.reply
+
+
+if(reply.includes(
+"OUTFIT"
+)){
+
+reply=reply
+
+.replace(
+"Top:",
+"<div class='fit-item'>👕 <b>Top:</b>"
+)
+
+.replace(
+"Bottom:",
+"</div><div class='fit-item'>👖 <b>Bottom:</b>"
+)
+
+.replace(
+"Footwear:",
+"</div><div class='fit-item'>👟 <b>Footwear:</b>"
+)
+
+.replace(
+"Accessory:",
+"</div><div class='fit-item'>🎒 <b>Accessory:</b>"
+)
+
+.replace(
+"Why this works:",
+"</div><div class='reason-box'><b>Why this works:</b><br>"
+)
+
+
+
+reply=
+
+`<div class="bot-message">
+
+<div class="outfit-card">
+
+<h3>
+
+✨ Recommended Fit
+
+</h3>
+
+${reply}
+
+</div>
+
+</div>`
+
+}
+
+
+else{
+
+reply=
+
+`<div class="bot-message">
+
+${reply}
+
+</div>`
+
+}
+
+
+chatBox.innerHTML+=reply
+
+chatBox.scrollTop=
+chatBox.scrollHeight
+
+})
+
+input.value=""
+
+}
+
+
+
+
+function addClothing(){
+
+let item=
+
+document.getElementById(
+"clothInput"
+).value
+
+
+if(item.trim()==""){
+
+return
+
+}
+
+
+fetch("/chat",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+"application/x-www-form-urlencoded"
+
+},
+
+body:
+"message="+
+encodeURIComponent(
+"Add:"+item
+)
+
+})
+
+.then(
+response=>response.json()
+)
+
+.then(data=>{
+
+alert(data.reply)
+
+document.getElementById(
+"clothInput"
+).value=""
+
+})
+
+}
+
+
+
+function uploadClothing(){
+
+let fileInput=
+document.getElementById(
+"imageUpload"
+)
+
+let file=
+fileInput.files[0]
+
+
+if(!file){
+
+alert(
+"Please select an image"
+)
+
+return
+
+}
+
+let formData=
+new FormData()
+
+formData.append(
+"image",
+file
+)
+
+
+fetch("/upload",{
+
+method:"POST",
+
+body:formData
+
+})
+
+.then(
+response=>response.json()
+)
+
+.then(data=>{
+
+alert(
+data.message
+)
+
+loadWardrobe()
+
+})
+
+}
+
+
+
+function loadWardrobe(){
+
+fetch(
+"/get_wardrobe"
+)
+
+.then(
+response=>response.json()
+)
+
+.then(files=>{
+
+let gallery=
+
+document.getElementById(
+"wardrobe-gallery"
+)
+
+gallery.innerHTML=""
+
+
+files.forEach(file=>{
+
+gallery.innerHTML+=`
+
+<div class="cloth-card">
+
+<img
+src="/uploads/${file}">
+
+<p>
+
+${file
+.replace(".jpg","")
+.replace(".png","")
+.replaceAll("_"," ")}
+
+</p>
+
+</div>
+
+`
+
+})
+
+})
+
+}
+
+
+
+function saveProfile(){
+
+alert(
+"Profile saved successfully ✅"
+)
+
+}
+
+
+window.onload=
+loadWardrobe
+function loadWardrobe(){
+
+fetch("/get_wardrobe")
+
+.then(response=>response.json())
+
+.then(files=>{
+
+let gallery=
+document.getElementById(
+"wardrobe-gallery"
+)
+
+gallery.innerHTML=""
+
+files.forEach(file=>{
+
+gallery.innerHTML+=`
+
+<div class="cloth-card">
+
+<img
+src="/uploads/${file}">
+
+<p>
+
+${file
+.replace(".jpg","")
+.replace(".png","")
+.replace("_"," ")}
+
+</p>
+
+</div>
+
+`
+
+})
+
+})
+
+}
+
+window.onload=loadWardrobe
+</script>
+
+</body>
+
+</html>

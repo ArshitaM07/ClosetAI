@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<div class="container">
+
+<h1>ClosetAI</h1>
+
+<div class="result-card">
+
+<p><b>Today's vibe:</b> {{ mood }} • {{ weather }} • {{ occasion }}</p>
+
+<p><b>Outfit:</b><br>{{ outfit }}</p>
+
+<p><b>Why:</b> {{ explanation }}</p>
+
+</div>
+
+<form action="/feedback" method="POST">
+
+<input type="hidden" name="outfit" value="{{ outfit }}">
+
+<button name="action" value="like">👍 Like</button>
+<button name="action" value="dislike">👎 Dislike</button>
+
+</form>
+
+<br>
+
+<form action="/save" method="POST">
+<input type="hidden" name="outfit" value="{{ outfit }}">
+<button>Save Outfit</button>
+</form>
+
+<br>
+
+<a href="/favorites"><button>View Saved</button></a>
+
+<br><br>
+
+<a href="/"><button>Try Again</button></a>
+
+</div>

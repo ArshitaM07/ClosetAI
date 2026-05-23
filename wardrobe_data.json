@@ -1,0 +1,41 @@
+[
+    {
+        "type":"top",
+        "name":"black fitted shirt"
+    },
+
+    {
+        "type":"top",
+        "name":"graphic tee"
+    },
+
+    {
+        "type":"top",
+        "name":"oversized hoodie"
+    },
+
+    {
+        "type":"bottom",
+        "name":"light jeans"
+    },
+
+    {
+        "type":"bottom",
+        "name":"black joggers"
+    },
+
+    {
+        "type":"accessory",
+        "name":"watch"
+    },
+
+    {
+        "type":"footwear",
+        "name":"white sneakers"
+    },
+
+    {
+        "type":"footwear",
+        "name":"waterproof shoes"
+    }
+]
