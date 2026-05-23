@@ -1,8 +1,8 @@
 import requests
-
+import os
 def get_weather(city):
 
-    api_key = "c1a34a5b0b21affff0f159bcf8c2e548"
+    API_KEY = os.getenv("WEATHER_API_KEY")
 
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 

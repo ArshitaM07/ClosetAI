@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="838f1a24-c970-4ac8-817d-b9c8af571d90" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ClosetAI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ai_chat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favorites.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/feedback.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profile.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recommendation_engine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/render.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/favorites.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/result.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_profile.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wardrobe.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wardrobe_data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wardrobe_engine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/weather.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weather.py" beforeDir="false" afterPath="$PROJECT_DIR$/weather.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +39,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
   <component name="SharedIndexes">
